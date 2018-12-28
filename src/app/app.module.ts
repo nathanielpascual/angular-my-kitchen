@@ -11,6 +11,7 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DropDownDirective } from './shared/dropdown.directive';
+import { ShoppingListService } from './shopping-list/shared/shoppingList.service';
 
 
 
@@ -30,7 +31,7 @@ import { DropDownDirective } from './shared/dropdown.directive';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ShoppingListService],
   bootstrap: [AppComponent]
 })
 
