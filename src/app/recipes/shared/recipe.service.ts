@@ -2,10 +2,11 @@ import { Recipe } from '../recipe.model';
 import {  Injectable } from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ShoppingListService } from 'src/app/shopping-list/shared/shoppingList.service';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class RecipeService {
-   
+   recipeChanged = new Subject;
    private recipes: Recipe[] = [
         new Recipe('Carbonara',
         'Italian style carbonara',
@@ -20,7 +21,18 @@ export class RecipeService {
         [new Ingredient('Pasta',1),
         new Ingredient('Sun-dried tomato',1),
         new Ingredient('ground pork',1)
+      ]),
+        new Recipe('Lasagna',
+        'Classic lasagna recipe with ground beef, onion, Mozzarella, Ricotta',
+        'https://www.simplyrecipes.com/wp-content/uploads/2004/12/lasagna-horiz-b-2000.jpg',
+        [new Ingredient('1/2 lb dry lasagna noodles ',9),
+        new Ingredient('15 ounces Ricotta cheese',1),
+        new Ingredient('1/2 lb (24 ounces) Mozzarella cheese, grated or sliced',1),
+        new Ingredient('1/4 lb (4 ounces) freshly grated Parmesan cheese',1),
+        new Ingredient('Olive oil',1),
+        new Ingredient('1 pound lean ground beef (chuck)',1),
       ])
+      
       ];
 
     constructor(private shoppingListService : ShoppingListService){
@@ -44,4 +56,21 @@ export class RecipeService {
         this.shoppingListService.addIngredients(ingredients);
     }
 
+    addRecipe(recipe: Recipe)
+    {
+        this.recipes.push(recipe);
+        this.recipeChanged.next(this.recipes.slice()) ;
+    }
+
+    updateRecipe(index: number, recipe: Recipe)
+    {
+        this.recipes[index] = recipe;
+        this.recipeChanged.next(this.recipes.slice());
+    }
+
+    deleteRecipe(index: number)
+    {
+        this.recipes.splice(index,1);
+        this.recipeChanged.next(this.recipes.slice());
+    }
 }

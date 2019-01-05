@@ -1,3 +1,36 @@
 .spaces {
     margin-right:4px;
 }
+
+input.ng-invalid.ng-touched, 
+textarea.ng-invalid.ng-touched{
+    border:1px solid red;
+}
+
+.img-width-height {
+    max-width: 98%;
+    max-height: auto;
+}
+
+@media only screen and (max-width:375px)
+{
+    .img-width-height {
+        max-width: 98%;
+        max-height:auto;
+    }
+}
+@media only screen and (max-width:450px)
+{
+    .img-width-height {
+        max-width: 98%;
+        max-height:auto;
+    }
+}
+
+@media only screen and (max-width:1200px)
+{
+    .img-width-height {
+        max-width: 98%;
+        max-height:auto;
+    }
+}
