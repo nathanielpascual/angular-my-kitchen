@@ -25,10 +25,9 @@ constructor(private router : Router){
     }
 
     signOut() {
-        this.router.navigate(['/signin']);
         firebase.auth().signOut();
         this.token = null;
-        
+        this.router.navigate(['/signin']);
     }
 
     getToken()
@@ -41,6 +40,9 @@ constructor(private router : Router){
     }
 
     isAuthenticated() {
-        return this.token !=null;
+        if(this.token==null)
+           return false;       
+        //return this.token !=null;
+        return true;
     }
 }
