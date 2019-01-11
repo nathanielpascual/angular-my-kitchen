@@ -2,6 +2,11 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a routerLink="/" class="navbar-brand">Recipe Book</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
     
         <div class="collapse navbar-collapse">
@@ -11,7 +16,7 @@
                 <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
                 
             </ul>
-            <ul class="nav navbar-nav " style="display:flex; width:70%;justify-content: flex-end">  
+            <ul class="nav navbar-nav navbar-right">
                 <ng-template [ngIf]="!authService.isAuthenticated()">
                     <li><a routerLink="/signup">Register</a></li>
                     <li><a routerLink="/signin">Login</a></li>

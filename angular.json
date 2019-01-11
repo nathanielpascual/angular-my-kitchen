@@ -27,6 +27,7 @@
               "src/styles.css" 
             ],
             "scripts": [
+              "node_modules/bootstrap/js/collapse.js"
             ]
           },
           "configurations": {
