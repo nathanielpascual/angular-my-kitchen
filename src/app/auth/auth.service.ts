@@ -10,7 +10,10 @@ constructor(private router : Router){
 
 }
     signupUser(email:string, password:string){
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        return firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((response)=> {
+                   this.router.navigate(['/signin']);
+                })
                 .catch((error)=> console.log(error));
     }
 
