@@ -7,7 +7,6 @@ import { RecipeService } from '../recipes/shared/recipe.service';
 import { DataStorageService } from '../shared/data-storage.service';
 import { AuthService } from '../auth/auth.service';
 import { AuthGuard } from '../auth/auth-guard.service';
-import { ShoppingListService } from '../shopping-list/shared/shoppingList.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../shared/auth.interceptor';
 import { LoggingInterceptor } from '../shared/logging.interceptor';
@@ -21,7 +20,7 @@ import { LoggingInterceptor } from '../shared/logging.interceptor';
         SharedModule,
         AppRoutingModule
     ],
-    providers: [ShoppingListService,
+    providers: [
         RecipeService,
         DataStorageService,
         AuthService,
