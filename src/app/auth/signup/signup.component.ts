@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, EmailValidator } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import {Store} from '@ngrx/store';
+import * as fromApp from '../../store/app.reducers';
+import * as AuthActions from '../store/auth.action';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +15,7 @@ export class SignupComponent implements OnInit {
   email ='';
   password = '';
 
-  constructor(private authService: AuthService) {
+  constructor(private store : Store<fromApp.AppState>) {
 
    }
 
@@ -23,6 +26,7 @@ export class SignupComponent implements OnInit {
   onSignUp(form: NgForm){
     this.email = form.value.userSignUp.email;
     this.password = form.value.userSignUp.password;
-    this.authService.signupUser(this.email,this.password);
+    this.store.dispatch(new AuthActions.Trysignup({username : this.email, password:this.password}));
+    
   }
 }
