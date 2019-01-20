@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit{
     }
 
     onLogout(){
-        this.store.dispatch(new AuthAction.Logout());
         this.router.navigate(['/signin']);
+        this.store.dispatch(new AuthAction.Logout());
     }
 }
