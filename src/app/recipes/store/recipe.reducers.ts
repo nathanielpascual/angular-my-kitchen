@@ -1,6 +1,6 @@
 import { Recipe } from '../recipe.model';
 import {Ingredient } from '../../shared/ingredient.model';
-
+import * as RecipeActions from './recipe.actions';
 export interface FeatureState {
     recipes:State
 }
@@ -38,6 +38,6 @@ const initialState: State = {
     ]
 };
 
-export function recipeReducer(state = initialState, action){
+export function recipeReducer(state = initialState, action:RecipeActions.RecipeActions){
     return state;
 }
