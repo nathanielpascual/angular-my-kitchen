@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import * as fromApp from '../../store/app.reducers';
 import * as fromAuth from '../../auth/store/auth.reducer';
 import * as AuthAction from '../../auth/store/auth.action';
-
+import * as RecipeAction from '../../recipes/store/recipe.actions';
 
 @Component({
     selector: 'app-header',
@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit{
     }
 
     onFetchData() {
-        this.dataStorageService.getRecipes();
+        this.store.dispatch(new RecipeAction.FetchRecipes());
     }
 
     onLogout(){
