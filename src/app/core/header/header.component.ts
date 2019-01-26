@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
 import { Store} from '@ngrx/store';
-import { DataStorageService } from '../../shared/data-storage.service';
-import { HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import * as fromApp from '../../store/app.reducers';
@@ -17,8 +15,7 @@ import * as RecipeAction from '../../recipes/store/recipe.actions';
 
 export class HeaderComponent implements OnInit{
     authState: Observable<fromAuth.State>;
-    constructor(private dataStorageService : DataStorageService,
-               private router: Router,
+    constructor(private router: Router,
                private store: Store<fromApp.AppState>) {
 
     }

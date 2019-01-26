@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as fromRecipe from '../store/recipe.reducers';
+import * as RecipeAction from '../../recipes/store/recipe.actions';
 
 @Component({
   selector: 'app-recipe-list',
@@ -19,6 +20,7 @@ export class RecipeListComponent implements OnInit {
    }
 
   ngOnInit() {
+     this.store.dispatch(new RecipeAction.FetchRecipes());
      this.recipeState = this.store.select('recipes');
   }
 
