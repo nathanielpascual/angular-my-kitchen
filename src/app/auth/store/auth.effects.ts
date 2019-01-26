@@ -64,6 +64,12 @@ export class AuthEffects {
 
       }));
 
+    @Effect({dispatch:false})
+    authLogout = this.actions$
+                .pipe(ofType(AuthActions.LOGOUT))
+                .pipe(tap(()=>{
+                  this.router.navigate(['/']);
+                }));
     constructor(private router : Router,private actions$: Actions){
 
     }
