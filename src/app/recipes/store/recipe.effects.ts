@@ -1,5 +1,6 @@
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { HttpClient,  HttpRequest } from '@angular/common/http';
+import { map,switchMap,withLatestFrom } from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import {Recipe} from '../recipe.model';
 import { Injectable } from '@angular/core';
@@ -12,37 +13,39 @@ export class RecipeEffects {
 
 @Effect()
 recipeFetch = this.actions$.pipe(ofType(RecipeActions.FETCH_RECIPES))
-    .switchMap((action: RecipeActions.FetchRecipes)=>{
+    .pipe(
+      switchMap((action: RecipeActions.FetchRecipes)=>{
         return this.httpClient.get<Recipe[]>(`https://recipe-book-7037c.firebaseio.com/recipes.json`,
         {
             observe:'body',
             responseType:'json',
         })
-    })
-    .map(
-        (recipes)=> {
-         for(let recipe of recipes)
-         {
-             if(!recipe['ingredients']){
-                 recipe['ingredients']=[];
-             }
-         }
-         return {
-             type : RecipeActions.SET_RECIPES,
-             payload: recipes
-         }
-        }
-    );
+    }),map(
+      (recipes)=> {
+       for(let recipe of recipes)
+       {
+           if(!recipe['ingredients']){
+               recipe['ingredients']=[];
+           }
+       }
+       return {
+           type : RecipeActions.SET_RECIPES,
+           payload: recipes
+       }
+      }
+    ));
 
 @Effect({dispatch:false})
 recipeStore = this.actions$.pipe(ofType(RecipeActions.STORE_RECIPES))
-              .withLatestFrom(this.store.select('recipes'))
-              .switchMap(([action,state])=>{
-                const req = new HttpRequest('PUT',`https://recipe-book-7037c.firebaseio.com/recipes.json`,
-                state.recipes,{reportProgress:true});
+              .pipe(
+                withLatestFrom(this.store.select('recipes')),
+                switchMap(([action,state])=>{
+                  const req = new HttpRequest('PUT',`https://recipe-book-7037c.firebaseio.com/recipes.json`,
+                  state.recipes,{reportProgress:true});
 
-                return this.httpClient.request(req);
-              });
+                  return this.httpClient.request(req);
+                })
+              );
 
 constructor(private actions$: Actions,
             private httpClient:HttpClient,

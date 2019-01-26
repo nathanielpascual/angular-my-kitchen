@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import 'rxjs/Rx';
+import 'rxjs';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreRouterConnectingModule} from '@ngrx/router-store';
 import { StoreDevtoolsModule} from '@ngrx/store-devtools';
