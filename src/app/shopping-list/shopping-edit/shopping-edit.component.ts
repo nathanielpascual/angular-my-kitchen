@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Ingredient } from 'src/app/shared/ingredient.model';
+import { Ingredient } from '../../shared/ingredient.model';
 
 import { Store } from '@ngrx/store';
 import * as ShoppingListActions from '../store/shopping-list.actions';
@@ -36,7 +36,7 @@ export class ShoppingEditComponent implements OnInit,OnDestroy {
          }
        }
     );
-  
+
   }
 
   onSubmit(form: NgForm) {
