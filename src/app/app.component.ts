@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
-import 'firebase/app';
+// import * as firebase from 'firebase';
+// import 'firebase/app';
+import { firebase } from '@firebase/app';
 
 const config ={
   apiKey: "AIzaSyCHGXuSKZ2WW7PCvrOwEkj5qEKMgTxNPnA",
